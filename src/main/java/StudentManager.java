@@ -5,14 +5,14 @@ import java.util.Scanner;
 
 public class StudentManager {
     private StudentService studentService;
-    private Scanner sc;
+    private static  Scanner sc;
 
     public StudentManager(){
          this.studentService=new StudentService();
-         this.sc=new Scanner(System.in);
     }
 
-    public void manage() {
+    public void manage(Scanner sc) {
+        this.sc=sc;
         boolean running = true;
         while (running) {
             System.out.println("Manage Students Menu:\n" +
@@ -37,7 +37,7 @@ public class StudentManager {
                 case 3:
                     System.out.println("Search Student by ID ");
                     System.out.println("Enter Id to be searched");
-                    Long idEntered=sc.nextLong();
+                    int idEntered=sc.nextInt();
                     Student student=getStudentByID(idEntered);
                     if (student != null) {
                         System.out.println(student);
@@ -49,7 +49,7 @@ public class StudentManager {
                     System.out.println("Deactivate a Student");
                     deactivateStudent();
                     break;
-                case 6:
+                case 5:
                     System.out.println("Back to Main Menu ");
                     running=false;
                     break;
@@ -61,15 +61,14 @@ public class StudentManager {
             }
 
         }
-        sc.close();
     }
-    public Student  getStudentByID(Long idEntered){
+    public Student  getStudentByID(int idEntered){
        Student student=  studentService.getStudentByID(idEntered);
        return student;
     }
     public void  deactivateStudent(){
         System.out.println("Enter Id to be searched");
-        Long idEntered=sc.nextLong();
+        int idEntered=sc.nextInt();
         Student student=getStudentByID(idEntered);
         if(student==null){
             System.out.println("Student Not Found !!");

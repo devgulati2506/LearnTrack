@@ -22,7 +22,7 @@ public class CourseRepo {
     public List<Course> getCourseList(){
         return this.courseList;
     }
-    public  Course getCourseByID(Long id){
+    public  Course getCourseByID(int id){
         Optional<Course> course=this.courseList.stream().filter(c->c.getId()==id).findFirst();
         return course.orElse(null);
     }

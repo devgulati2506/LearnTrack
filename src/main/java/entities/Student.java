@@ -1,11 +1,12 @@
 package entities;
 
-public class Student {
-    public Long getId() {
-        return id;
-    }
+import util.IdGenerator;
 
-    private Long id;
+import java.util.List;
+
+public class Student {
+
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -23,18 +24,22 @@ public class Student {
         this.batch=batch;
         this.email=email;
         this.isActive=isActive;
+        this.id= IdGenerator.getNextStudentId();
     }
   public Student(String firstName,String lastName,String batch,boolean isActive){
         this.firstName=firstName;
         this.lastName=lastName;
         this.batch=batch;
         this.isActive=isActive;
+      this.id= IdGenerator.getNextStudentId();
     }
 
     public String getFirstName() {
         return firstName;
     }
-
+    public int getId() {
+        return id;
+    }
 
     public String getLastName() {
         return lastName;
@@ -52,6 +57,7 @@ public class Student {
     @Override
     public String toString() {
         return "[name:\"" + firstName + "\", lastName:\"" + lastName +
+                "\", id:\"" + id +
                 "\", email:\"" + email + "\", batch:\"" + batch +
                 "\", isActive:" + isActive + "]";
     }

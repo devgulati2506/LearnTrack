@@ -10,7 +10,7 @@ public class StudentService {
     public StudentService(){
        this.studentRepository=new StudentRepository();
     }
-    public Student getStudentByID(Long id){
+    public Student getStudentByID(int id){
         return this.studentRepository.getStudentByID(id);
     }
 

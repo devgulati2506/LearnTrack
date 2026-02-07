@@ -9,13 +9,13 @@ import java.util.Optional;
 
 public class StudentRepository {
 
-    List<Student> studentLs=new ArrayList<>();
+   private static List<Student> studentLs=new ArrayList<>();
 
 public List<Student> addStudent(Student student){
     studentLs.add(student);
     return studentLs;
 }
-public Student getStudentByID(Long id){
+public Student getStudentByID(int id){
     Optional<Student> student=this.studentLs.stream().filter(st->st.getId()==id).findFirst();
     return student.orElse(null);
 }

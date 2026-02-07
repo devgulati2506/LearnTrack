@@ -1,13 +1,23 @@
 package entities;
 
+import util.IdGenerator;
+
 public class Course {
-    public Long getId() {
-        return id;
-    }
 
     // Fields: id, courseName, description, durationInWeeks, active
-    private Long id;
+    private int id;
+    private  String courseName;
+    private  String desc;
+    private int durationInWeeks;
+    private boolean isActive;
 
+    public Course(String courseName, String desc, int durationInWeeks, boolean isActive){
+        this.courseName=courseName;
+        this.desc=desc;
+        this.durationInWeeks=durationInWeeks;
+        this.isActive=isActive;
+        this.id= IdGenerator.getNextCourseId();
+    }
     public String getCourseName() {
         return courseName;
     }
@@ -35,25 +45,17 @@ public class Course {
     public boolean isActive() {
         return isActive;
     }
+    public int getId() {
+        return id;
+    }
 
     public void setActive(boolean active) {
         isActive = active;
     }
-
-    private  String courseName;
-    private  String desc;
-    private int durationInWeeks;
-    private boolean isActive;
-
-    public Course(String courseName, String desc, int durationInWeeks, boolean isActive){
-        this.courseName=courseName;
-        this.desc=desc;
-        this.durationInWeeks=durationInWeeks;
-        this.isActive=isActive;
-    }
     @Override
     public String toString() {
-        return "[courseName:\"" + courseName + "\", desc:\"" + desc +
+        return "[ courseName:\"" + courseName + "\", desc:\"" + desc +
+                "\", ID:\"" + id +
                 "\", durationInWeeks:\"" + durationInWeeks  +
                 "\", isActive:" + isActive + "]";
     }

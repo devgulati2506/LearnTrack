@@ -7,14 +7,14 @@ import java.util.Scanner;
 
 public class CourseManager {
     private CourseService courseService;
-    private Scanner sc;
+    private static  Scanner sc;
 
     public CourseManager(){
          this.courseService=new CourseService();
-         this.sc=new Scanner(System.in);
     }
 
-    public void manage() {
+    public void manage(Scanner sc) {
+        this.sc=sc;
         boolean running = true;
         while (running) {
             System.out.println("Manage Course Menu:\n" +
@@ -51,18 +51,18 @@ public class CourseManager {
             }
 
         }
-        sc.close();
     }
-    public Course  getCourseByID(Long idEntered){
+    public Course  getCourseByID(int idEntered){
         Course course=  courseService.getCourseByID(idEntered);
        return course;
     }
     public void  deactivateCourse(){
         System.out.println("Enter Id to be searched");
-        Long idEntered=sc.nextLong();
+        int idEntered=sc.nextInt();
         Course course=getCourseByID(idEntered);
         if(course==null){
-            System.out.println("Corse Not Found !!");
+            System.out.println("Course Not Found !!");
+            return ;
         }
         course.setActive(false);
     }
@@ -70,15 +70,19 @@ public class CourseManager {
         System.out.println(courseService.getCourseList());
     }
     public void addCourse(){
-        System.out.println("Enter course:");
-        String course=sc.nextLine();
+            System.out.println("Enter course:");
+            String course = sc.nextLine();
 
-        System.out.println("Enter   desc:");
-        String desc=sc.nextLine();
-        System.out.println("Enter durationInWeeks:");
-        int durationInWeeks=sc.nextInt();
-
-        courseService.addCourse(new Course(course,desc,durationInWeeks,true));
+            System.out.println("Enter   desc:");
+            String desc = sc.nextLine();
+            System.out.println("Enter durationInWeeks:");
+            int durationInWeeks=0;
+        try {
+            durationInWeeks = sc.nextInt();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+            courseService.addCourse(new Course(course, desc, durationInWeeks, true));
 
     }
 }
