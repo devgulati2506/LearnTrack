@@ -19,4 +19,11 @@ public class CourseRepo {
         courseList.remove(courseToRemoved);
         return courseList;
     }
+    public List<Course> getCourseList(){
+        return this.courseList;
+    }
+    public  Course getCourseByID(Long id){
+        Optional<Course> course=this.courseList.stream().filter(c->c.getId()==id).findFirst();
+        return course.orElse(null);
+    }
 }

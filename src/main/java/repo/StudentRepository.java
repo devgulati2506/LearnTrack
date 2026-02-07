@@ -15,6 +15,10 @@ public List<Student> addStudent(Student student){
     studentLs.add(student);
     return studentLs;
 }
+public Student getStudentByID(Long id){
+    Optional<Student> student=this.studentLs.stream().filter(st->st.getId()==id).findFirst();
+    return student.orElse(null);
+}
     public List<Student> getAllStudents(){
         return this.studentLs;
     }

@@ -10,6 +10,9 @@ public class StudentService {
     public StudentService(){
        this.studentRepository=new StudentRepository();
     }
+    public Student getStudentByID(Long id){
+        return this.studentRepository.getStudentByID(id);
+    }
 
 
     public List<Student>addStudent(Student student){

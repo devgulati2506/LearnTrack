@@ -36,12 +36,18 @@ public class StudentManager {
                     break;
                 case 3:
                     System.out.println("Search Student by ID ");
+                    System.out.println("Enter Id to be searched");
+                    Long idEntered=sc.nextLong();
+                    Student student=getStudentByID(idEntered);
+                    if (student != null) {
+                        System.out.println(student);
+                    }else{
+                        System.out.println("Student Not found !!");
+                    }
                     break;
                 case 4:
                     System.out.println("Deactivate a Student");
-                    break;
-                case 5:
-                    System.out.println("View All Students ");
+                    deactivateStudent();
                     break;
                 case 6:
                     System.out.println("Back to Main Menu ");
@@ -56,6 +62,19 @@ public class StudentManager {
 
         }
         sc.close();
+    }
+    public Student  getStudentByID(Long idEntered){
+       Student student=  studentService.getStudentByID(idEntered);
+       return student;
+    }
+    public void  deactivateStudent(){
+        System.out.println("Enter Id to be searched");
+        Long idEntered=sc.nextLong();
+        Student student=getStudentByID(idEntered);
+        if(student==null){
+            System.out.println("Student Not Found !!");
+        }
+        student.setActive(false);
     }
     public void viewStudents(){
         System.out.println(studentService.getAllStudents());

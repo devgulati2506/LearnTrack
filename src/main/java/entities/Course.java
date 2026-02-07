@@ -51,5 +51,12 @@ public class Course {
         this.durationInWeeks=durationInWeeks;
         this.isActive=isActive;
     }
+    @Override
+    public String toString() {
+        return "[courseName:\"" + courseName + "\", desc:\"" + desc +
+                "\", durationInWeeks:\"" + durationInWeeks  +
+                "\", isActive:" + isActive + "]";
+    }
+
 
 }

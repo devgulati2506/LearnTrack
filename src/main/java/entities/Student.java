@@ -10,6 +10,11 @@ public class Student {
     private String lastName;
     private String email;
     private String batch;
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
     private boolean isActive;
 
     public Student(String firstName,String lastName,String email,String batch,boolean isActive){
